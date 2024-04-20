@@ -8,4 +8,5 @@
     border-radius: 5px;
     color: var(--primary-text);
     padding: 5px;
+    text-overflow: ellipsis;
 }

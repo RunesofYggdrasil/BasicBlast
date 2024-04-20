@@ -31,7 +31,6 @@
 }
 .cardBody {
     flex-direction: column;
-    height: 150px;
 }
 .cardFoot {
     flex-direction: row;
@@ -61,5 +60,6 @@
 
 .displaySelect {
     position: absolute;
-    right: 10px;
+    top: 8px;
+    right: 0;
 }
