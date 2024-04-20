@@ -26,6 +26,7 @@
 }
 .cardTitle {
     flex-direction: column;
+    position: relative;
     height: 80px;
 }
 .cardBody {
@@ -56,4 +57,9 @@
 }
 .cardFoot p {
     color: var(--secondary-text);
+}
+
+.displaySelect {
+    position: absolute;
+    right: 10px;
 }

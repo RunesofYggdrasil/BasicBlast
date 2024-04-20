@@ -35,10 +35,12 @@ const MatchCard = ({
           <h2>
             {titleFunction}: {titleBrief}
           </h2>
-          <DisplaySelect
-            currentDisplay={currentDisplay}
-            setDisplay={setCurrentDisplay}
-          />
+          <div className={styles.displaySelect}>
+            <DisplaySelect
+              currentDisplay={currentDisplay}
+              setDisplay={setCurrentDisplay}
+            />
+          </div>
         </div>
         <hr />
         <div className={styles.cardBody}>
