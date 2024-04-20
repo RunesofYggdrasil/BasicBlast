@@ -1,0 +1,11 @@
+.selectMenu {
+    height: 20px;
+    width: 70px;
+}
+.selectMenu select {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--tertiary-border);
+    border-radius: 5px;
+    color: var(--primary-text);
+    padding: 5px;
+}

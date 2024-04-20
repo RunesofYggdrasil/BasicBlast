@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import styles from "./MatchCard.module.css";
 import SequenceCard from "./SequenceCard";
+import DisplaySelect from "./DisplaySelect";
 
 interface MatchProps {
   titleSpecies: string;
@@ -23,6 +26,7 @@ const MatchCard = ({
   footUser,
   footDate,
 }: MatchProps) => {
+  let [currentDisplay, setCurrentDisplay] = useState("Full");
   return (
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
@@ -31,6 +35,10 @@ const MatchCard = ({
           <h2>
             {titleFunction}: {titleBrief}
           </h2>
+          <DisplaySelect
+            currentDisplay={currentDisplay}
+            setDisplay={setCurrentDisplay}
+          />
         </div>
         <hr />
         <div className={styles.cardBody}>
