@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import MatchCard from "../components/MatchCard";
 
 const BlastPage = () => {
@@ -14,6 +16,17 @@ const BlastPage = () => {
         bodyLength={56}
         footUser="User"
         footDate="Date"
+      />
+      <MatchCard
+        displaySetting="Full"
+        titleSpecies="S"
+        titleFunction="T"
+        titleBrief="U"
+        bodyDescription="Blahhhh Blahhh"
+        bodySequence="blahhhhhhh"
+        bodyLength={56}
+        footUser="User 2"
+        footDate="Date 2"
       />
     </>
   );
