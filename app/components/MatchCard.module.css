@@ -14,9 +14,46 @@
     border-radius: 5px;
     color: inherit;
 }
-.matchCard .innerCard .cardTitle h1 {
+.innerCard hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 2px;
+    color: var(--primary-graphic);
+}
+.cardTitle, .cardBody, .cardFoot {
+    display: flex;
+    margin: auto;
+}
+.cardTitle {
+    flex-direction: column;
+    height: 80px;
+}
+.cardBody {
+    flex-direction: column;
+    height: 150px;
+}
+.cardFoot {
+    flex-direction: row;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+}
+
+.cardTitle h1 {
     font-size: 2.5em;
 }
-.matchCard .innerCard .cardTitle h2 {
+.cardTitle h2 {
     font-size: 1.5em;
+}
+
+.cardFoot .username {
+    position: absolute;
+    left: 10px;
+}
+.cardFoot .userdate {
+    position: absolute;
+    right: 10px;
+}
+.cardFoot p {
+    color: var(--secondary-text);
 }

@@ -33,17 +33,19 @@ const MatchCard = ({
           </h2>
         </div>
         <hr />
-        <div>
-          <p>{bodyDescription}</p>
+        <div className={styles.cardBody}>
+          <div>
+            <p>{bodyDescription}</p>
+          </div>
+          <hr />
+          <div>
+            <SequenceCard sequence={bodySequence} length={bodyLength} />
+          </div>
         </div>
         <hr />
-        <div>
-          <SequenceCard sequence={bodySequence} length={bodyLength} />
-        </div>
-        <hr />
-        <div>
-          <p>{footUser}</p>
-          <p>{footDate}</p>
+        <div className={styles.cardFoot}>
+          <p className={styles.username}>Submitted by {footUser}</p>
+          <p className={styles.userdate}>Submitted on {footDate}</p>
         </div>
       </div>
     </div>

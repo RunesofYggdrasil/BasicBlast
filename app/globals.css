@@ -1,17 +1,23 @@
 :root {
   --primary-bg: #e7cbff;
-  --primary-border: #000000;
-  --primary-text: #000000;
   --secondary-bg: #4834a3;
-  --secondary-border: #000000;
-  --secondary-text: #000000;
   --tertiary-bg: #d478ff;
+
+  --primary-border: #000000;
+  --secondary-border: #000000;
   --tertiary-border: #000000;
-  --tertiary-text: #000000;
+  
+  --primary-text: #000000;
+  --secondary-text: #353535;
+  --tertiary-text: #6b6b6b;
+
+  --primary-graphic: #9e009e;
+  --secondary-graphic: #5b00d3;
+  --tertiary-graphic: #001d7e;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --primary-bg: #e7cbff;
     --primary-border: #000000;
     --primary-text: #000000;
@@ -21,7 +27,7 @@
     --tertiary-bg: #d478ff;
     --tertiary-border: #000000;
     --tertiary-text: #000000;
-  }
+  } */
 }
 
 * {
