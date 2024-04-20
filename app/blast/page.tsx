@@ -4,7 +4,13 @@ import MatchCard from "../components/MatchCard";
 const BlastPage = () => {
   return (
     <>
-      <MatchCard />
+      <MatchCard
+        titleSpecies="R"
+        titleFunction="M"
+        titleBrief="B"
+        bodyDescription="Blahhhh Blahhh"
+        bodySequence="blahhhhhhh"
+      />
     </>
   );
 };
