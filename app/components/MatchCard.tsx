@@ -7,8 +7,8 @@ import DisplaySelect from "./DisplaySelect";
 
 interface MatchProps {
   displaySetting: string;
+  titleName: string;
   titleSpecies: string;
-  titleFunction: string;
   titleBrief: string;
   bodyDescription: string;
   bodySequence: string;
@@ -19,8 +19,8 @@ interface MatchProps {
 
 const MatchCard = ({
   displaySetting,
+  titleName,
   titleSpecies,
-  titleFunction,
   titleBrief,
   bodyDescription,
   bodySequence,
@@ -33,9 +33,9 @@ const MatchCard = ({
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
         <div className={styles.cardTitle}>
-          <h1>{titleSpecies}</h1>
+          <h1>{titleName}</h1>
           <h2>
-            {titleFunction}: {titleBrief}
+            {titleSpecies}: {titleBrief}
           </h2>
           <div className={styles.displaySelect}>
             <DisplaySelect

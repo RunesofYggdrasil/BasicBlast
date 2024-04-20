@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import MatchCard from "../components/MatchCard";
 
 const BlastPage = () => {
+  const defaultDisplay = "Half";
   return (
     <>
       <MatchCard
-        displaySetting="Full"
-        titleSpecies="R"
-        titleFunction="M"
+        displaySetting={defaultDisplay}
+        titleName="R"
+        titleSpecies="M"
         titleBrief="B"
         bodyDescription="Blahhhh Blahhh"
         bodySequence="blahhhhhhh"
@@ -18,9 +19,9 @@ const BlastPage = () => {
         footDate="Date"
       />
       <MatchCard
-        displaySetting="Full"
-        titleSpecies="S"
-        titleFunction="T"
+        displaySetting={defaultDisplay}
+        titleName="S"
+        titleSpecies="T"
         titleBrief="U"
         bodyDescription="Blahhhh Blahhh"
         bodySequence="blahhhhhhh"
