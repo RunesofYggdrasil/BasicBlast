@@ -28,7 +28,6 @@ const DisplaySelect = ({ currentDisplay, setDisplay }: DisplayProps) => {
         <option value="Full">Full</option>
         <option value="Half">Half</option>
         <option value="Short">Short</option>
-        <option value="Hide">Hide</option>
       </select>
     </div>
   );

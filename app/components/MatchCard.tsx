@@ -6,6 +6,7 @@ import SequenceCard from "./SequenceCard";
 import DisplaySelect from "./DisplaySelect";
 
 interface MatchProps {
+  displaySetting: string;
   titleSpecies: string;
   titleFunction: string;
   titleBrief: string;
@@ -17,6 +18,7 @@ interface MatchProps {
 }
 
 const MatchCard = ({
+  displaySetting,
   titleSpecies,
   titleFunction,
   titleBrief,
@@ -26,7 +28,7 @@ const MatchCard = ({
   footUser,
   footDate,
 }: MatchProps) => {
-  let [currentDisplay, setCurrentDisplay] = useState("Full");
+  let [currentDisplay, setCurrentDisplay] = useState(displaySetting);
   return (
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
@@ -42,20 +44,34 @@ const MatchCard = ({
             />
           </div>
         </div>
-        <hr />
-        <div className={styles.cardBody}>
-          <div>
-            <p>{bodyDescription}</p>
-          </div>
+        <div
+          className={
+            currentDisplay == "Full" || currentDisplay == "Half"
+              ? styles.cardBody
+              : styles.displayNone
+          }
+        >
           <hr />
+          <div
+            className={
+              currentDisplay == "Full" ? "Display" : styles.displayNone
+            }
+          >
+            <p>{bodyDescription}</p>
+            <hr />
+          </div>
           <div>
             <SequenceCard sequence={bodySequence} length={bodyLength} />
           </div>
         </div>
-        <hr />
-        <div className={styles.cardFoot}>
-          <p className={styles.username}>Submitted by {footUser}</p>
-          <p className={styles.userdate}>Submitted on {footDate}</p>
+        <div
+          className={currentDisplay == "Full" ? "Display" : styles.displayNone}
+        >
+          <hr />
+          <div className={styles.cardFoot}>
+            <p className={styles.username}>Submitted by {footUser}</p>
+            <p className={styles.userdate}>Submitted on {footDate}</p>
+          </div>
         </div>
       </div>
     </div>

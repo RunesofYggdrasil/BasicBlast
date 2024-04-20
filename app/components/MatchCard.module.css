@@ -1,3 +1,7 @@
+.displayNone {
+    display: none;
+}
+
 .matchCard {
     margin: 20px;
     padding: 10px;
@@ -29,14 +33,19 @@
     position: relative;
     height: 80px;
 }
+.displaySelect {
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
 .cardBody {
     flex-direction: column;
 }
 .cardFoot {
     flex-direction: row;
     position: relative;
-    height: 30px;
-    line-height: 30px;
+    height: 20px;
+    line-height: 20px;
 }
 
 .cardTitle h1 {
@@ -48,18 +57,12 @@
 
 .cardFoot .username {
     position: absolute;
-    left: 10px;
+    left: 0;
 }
 .cardFoot .userdate {
     position: absolute;
-    right: 10px;
+    right: 0;
 }
 .cardFoot p {
     color: var(--secondary-text);
-}
-
-.displaySelect {
-    position: absolute;
-    top: 8px;
-    right: 0;
 }

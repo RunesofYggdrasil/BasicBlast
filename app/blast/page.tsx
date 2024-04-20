@@ -5,6 +5,7 @@ const BlastPage = () => {
   return (
     <>
       <MatchCard
+        displaySetting="Full"
         titleSpecies="R"
         titleFunction="M"
         titleBrief="B"
