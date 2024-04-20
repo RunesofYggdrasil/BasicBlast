@@ -1,26 +1,26 @@
 :root {
-  --primary-bg: #FFFFFF;
-  --primary-border: #FFFFFF;
-  --primary-text: #FFFFFF;
-  --secondary-bg: #FFFFFF;
-  --secondary-border: #FFFFFF;
-  --secondary-text: #FFFFFF;
-  --tertiary-bg: #FFFFFF;
-  --tertiary-border: #FFFFFF;
-  --tertiary-text: #FFFFFF;
+  --primary-bg: #e7cbff;
+  --primary-border: #000000;
+  --primary-text: #000000;
+  --secondary-bg: #4834a3;
+  --secondary-border: #000000;
+  --secondary-text: #000000;
+  --tertiary-bg: #d478ff;
+  --tertiary-border: #000000;
+  --tertiary-text: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-bg: #FFFFFF;
-    --primary-border: #FFFFFF;
-    --primary-text: #FFFFFF;
-    --secondary-bg: #FFFFFF;
-    --secondary-border: #FFFFFF;
-    --secondary-text: #FFFFFF;
-    --tertiary-bg: #FFFFFF;
-    --tertiary-border: #FFFFFF;
-    --tertiary-text: #FFFFFF;
+    --primary-bg: #e7cbff;
+    --primary-border: #000000;
+    --primary-text: #000000;
+    --secondary-bg: #4834a3;
+    --secondary-border: #000000;
+    --secondary-text: #000000;
+    --tertiary-bg: #d478ff;
+    --tertiary-border: #000000;
+    --tertiary-text: #000000;
   }
 }
 

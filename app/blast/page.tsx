@@ -10,6 +10,9 @@ const BlastPage = () => {
         titleBrief="B"
         bodyDescription="Blahhhh Blahhh"
         bodySequence="blahhhhhhh"
+        bodyLength={56}
+        footUser="User"
+        footDate="Date"
       />
     </>
   );

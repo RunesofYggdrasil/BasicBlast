@@ -3,10 +3,15 @@ import styles from "./SequenceCard.module.css";
 
 interface SequenceProps {
   sequence: string;
+  length: number;
 }
 
-const SequenceCard = ({ sequence }: SequenceProps) => {
-  return <div>{sequence}</div>;
+const SequenceCard = ({ sequence, length }: SequenceProps) => {
+  return (
+    <div>
+      {sequence} + {length}
+    </div>
+  );
 };
 
 export default SequenceCard;
