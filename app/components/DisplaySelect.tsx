@@ -5,14 +5,24 @@ import styles from "./DisplaySelect.module.css";
 
 interface DisplayProps {
   currentDisplay: string;
-  setDisplay: Dispatch<SetStateAction<string>>;
+  setDisplay:
+    | Dispatch<SetStateAction<string>>
+    | Dispatch<SetStateAction<string>>[];
 }
 
 const handleChange = (
   value: string,
-  setAction: Dispatch<SetStateAction<string>>
+  setAction:
+    | Dispatch<SetStateAction<string>>
+    | Dispatch<SetStateAction<string>>[]
 ) => {
-  setAction(value);
+  if (Array.isArray(setAction)) {
+    for (let setIndex = 0; setIndex < setAction.length; setIndex++) {
+      setAction[setIndex](value);
+    }
+  } else {
+    setAction(value);
+  }
 };
 
 const DisplaySelect = ({ currentDisplay, setDisplay }: DisplayProps) => {

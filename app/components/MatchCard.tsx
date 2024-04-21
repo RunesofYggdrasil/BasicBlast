@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import styles from "./MatchCard.module.css";
 import SequenceCard from "./SequenceCard";
 import DisplaySelect from "./DisplaySelect";
 
 interface MatchProps {
   displaySetting: string;
+  displaySetter: Dispatch<SetStateAction<string>>;
   titleName: string;
   titleSpecies: string;
   titleBrief: string;
@@ -19,6 +20,7 @@ interface MatchProps {
 
 const MatchCard = ({
   displaySetting,
+  displaySetter,
   titleName,
   titleSpecies,
   titleBrief,
@@ -28,7 +30,7 @@ const MatchCard = ({
   footUser,
   footDate,
 }: MatchProps) => {
-  let [currentDisplay, setCurrentDisplay] = useState(displaySetting);
+  // let [currentDisplay, setCurrentDisplay] = useState(displaySetting);
   return (
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
@@ -39,14 +41,14 @@ const MatchCard = ({
           </h2>
           <div className={styles.displaySelect}>
             <DisplaySelect
-              currentDisplay={currentDisplay}
-              setDisplay={setCurrentDisplay}
+              currentDisplay={displaySetting}
+              setDisplay={displaySetter}
             />
           </div>
         </div>
         <div
           className={
-            currentDisplay == "Full" || currentDisplay == "Half"
+            displaySetting == "Full" || displaySetting == "Half"
               ? styles.cardBody
               : styles.displayNone
           }
@@ -54,7 +56,7 @@ const MatchCard = ({
           <hr />
           <div
             className={
-              currentDisplay == "Full" ? "Display" : styles.displayNone
+              displaySetting == "Full" ? "Display" : styles.displayNone
             }
           >
             <p>{bodyDescription}</p>
@@ -65,7 +67,7 @@ const MatchCard = ({
           </div>
         </div>
         <div
-          className={currentDisplay == "Full" ? "Display" : styles.displayNone}
+          className={displaySetting == "Full" ? "Display" : styles.displayNone}
         >
           <hr />
           <div className={styles.cardFoot}>

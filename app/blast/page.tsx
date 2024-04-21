@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
+import DisplaySelect from "../components/DisplaySelect";
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -13,7 +16,9 @@ const generateNucleotideSequence = (sequenceLength: number) => {
 };
 
 const BlastPage = () => {
-  const defaultDisplay: string = "Half";
+  const displaySetters: Dispatch<SetStateAction<string>>[] = [];
+  let [defaultDisplay, setDefaultDisplay] = useState("Half");
+  displaySetters[0] = setDefaultDisplay;
 
   // Test Setup
   const sequenceArray: string[] = [];
@@ -25,11 +30,18 @@ const BlastPage = () => {
   // Note: Use Sequence ID as Key
   return (
     <>
+      <DisplaySelect
+        currentDisplay={defaultDisplay}
+        setDisplay={displaySetters}
+      />
       {sequenceArray.map((sequence, index) => {
+        let [currentDisplay, setDisplay] = useState(defaultDisplay);
+        displaySetters[index + 1] = setDisplay;
         return (
           <MatchCard
             key={index}
-            displaySetting={defaultDisplay}
+            displaySetting={currentDisplay}
+            displaySetter={setDisplay}
             titleName="Test Name"
             titleSpecies="Test Species"
             titleBrief="Test Brief"
