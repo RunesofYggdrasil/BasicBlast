@@ -3,10 +3,9 @@ import styles from "./SequenceCard.module.css";
 
 interface SequenceProps {
   sequence: string;
-  length: number;
 }
 
-const SequenceCard = ({ sequence, length }: SequenceProps) => {
+const SequenceCard = ({ sequence }: SequenceProps) => {
   const sequenceArray: string[] = [];
   sequenceArray.length = 0;
   let arrayIndex = 0;

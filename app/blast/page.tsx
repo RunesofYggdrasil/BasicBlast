@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import MatchCard from "../components/MatchCard";
 
@@ -14,7 +12,6 @@ const BlastPage = () => {
         titleBrief="B"
         bodyDescription="Blahhhh Blahhh"
         bodySequence="tgagtactgaccagaatgccgtttacctttaaactagattgctggacgcgactgatgaagctttggttctagctgcgctgtgtgtctgcatagacgatggagggagcccgctgtatggtatggacttccgagacatcaaggctagcagggactaagctgttccattggtgccggttactattccccaggcgcaacttggccagataggagaagatacgtcagtggtctggggagtcggactattgaaccgaccagcgttgtgagtccagtaaagtcaggcagtatccttaaacccggggggacgcacagacccgcgatctagtggtcgggccggcggattagggcagcccccgggggcacgttgaacctcattgtgtatactctgagcacctttgggtcatggcggtgacggccccctgtctccaaaggtcagagcgatttagcacacatatttaggaccaacccgtgatcgtgagtctgtcactcatgccatctgttgt"
-        bodyLength={500}
         footUser="User"
         footDate="Date"
       />
@@ -25,7 +22,6 @@ const BlastPage = () => {
         titleBrief="U"
         bodyDescription="Blahhhh Blahhh"
         bodySequence="gaggagaagagtggaggagccggtctaccccctcccgttcccagtcttaattgatattaacactttctcaagctttaatggattgttaattgattcccggcaacggcatgtcgaaagttaatcagcgttctatgtgtttattgcggcagaaaaggtcaccgaagataattcgaaggtgagctcgagtctcgcgatcctggacgcactgagattatagtttttaagcaaacattaaggcagttcaaagtctccttgacagaaatccggcccctggacactctgtaccccctatttatgtgcctgaagctttcttcaatttggccaggtgctacacagaggcggcgggctgttgatattaacacggacgcgagagtgcattaactccacatttactttatgtcttagaggccagtaacagcgttagctgtccaccaggctaatcttgtctacttgctaaatatgccgcacttcatttgttacattattgtcggtttgcgcgg"
-        bodyLength={500}
         footUser="User 2"
         footDate="Date 2"
       />

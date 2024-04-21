@@ -12,7 +12,6 @@ interface MatchProps {
   titleBrief: string;
   bodyDescription: string;
   bodySequence: string;
-  bodyLength: number;
   footUser: string;
   footDate: string;
 }
@@ -24,7 +23,6 @@ const MatchCard = ({
   titleBrief,
   bodyDescription,
   bodySequence,
-  bodyLength,
   footUser,
   footDate,
 }: MatchProps) => {
@@ -61,7 +59,7 @@ const MatchCard = ({
             <hr />
           </div>
           <div>
-            <SequenceCard sequence={bodySequence} length={bodyLength} />
+            <SequenceCard sequence={bodySequence} />
           </div>
         </div>
         <div
