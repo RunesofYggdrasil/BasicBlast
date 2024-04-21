@@ -1,0 +1,4 @@
+.sequenceAlignment {
+    display: flex;
+    flex-direction: column;
+}

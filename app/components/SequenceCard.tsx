@@ -7,10 +7,34 @@ interface SequenceProps {
 }
 
 const SequenceCard = ({ sequence, length }: SequenceProps) => {
+  const sequenceArray: string[] = [];
+  sequenceArray.length = 0;
+  let arrayIndex = 0;
+  for (
+    let sequenceIndex = 0;
+    sequenceIndex < sequence.length;
+    sequenceIndex += 100
+  ) {
+    let sequenceSubset = sequence.substring(sequenceIndex, sequenceIndex + 100);
+    sequenceArray[arrayIndex] = sequenceSubset;
+    arrayIndex++;
+  }
+
   return (
-    <div>
-      {sequence} + {length}
-    </div>
+    <>
+      <div>
+        <p>{sequence.length}</p>
+      </div>
+      <div className={styles.sequenceAlignment}>
+        {sequenceArray.map((subset) => {
+          return (
+            <div className={styles.rowAlignment}>
+              <p>{subset}</p>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

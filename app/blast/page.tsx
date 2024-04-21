@@ -13,8 +13,8 @@ const BlastPage = () => {
         titleSpecies="M"
         titleBrief="B"
         bodyDescription="Blahhhh Blahhh"
-        bodySequence="blahhhhhhh"
-        bodyLength={56}
+        bodySequence="tgagtactgaccagaatgccgtttacctttaaactagattgctggacgcgactgatgaagctttggttctagctgcgctgtgtgtctgcatagacgatggagggagcccgctgtatggtatggacttccgagacatcaaggctagcagggactaagctgttccattggtgccggttactattccccaggcgcaacttggccagataggagaagatacgtcagtggtctggggagtcggactattgaaccgaccagcgttgtgagtccagtaaagtcaggcagtatccttaaacccggggggacgcacagacccgcgatctagtggtcgggccggcggattagggcagcccccgggggcacgttgaacctcattgtgtatactctgagcacctttgggtcatggcggtgacggccccctgtctccaaaggtcagagcgatttagcacacatatttaggaccaacccgtgatcgtgagtctgtcactcatgccatctgttgt"
+        bodyLength={500}
         footUser="User"
         footDate="Date"
       />
@@ -24,8 +24,8 @@ const BlastPage = () => {
         titleSpecies="T"
         titleBrief="U"
         bodyDescription="Blahhhh Blahhh"
-        bodySequence="blahhhhhhh"
-        bodyLength={56}
+        bodySequence="gaggagaagagtggaggagccggtctaccccctcccgttcccagtcttaattgatattaacactttctcaagctttaatggattgttaattgattcccggcaacggcatgtcgaaagttaatcagcgttctatgtgtttattgcggcagaaaaggtcaccgaagataattcgaaggtgagctcgagtctcgcgatcctggacgcactgagattatagtttttaagcaaacattaaggcagttcaaagtctccttgacagaaatccggcccctggacactctgtaccccctatttatgtgcctgaagctttcttcaatttggccaggtgctacacagaggcggcgggctgttgatattaacacggacgcgagagtgcattaactccacatttactttatgtcttagaggccagtaacagcgttagctgtccaccaggctaatcttgtctacttgctaaatatgccgcacttcatttgttacattattgtcggtttgcgcgg"
+        bodyLength={500}
         footUser="User 2"
         footDate="Date 2"
       />
