@@ -4,6 +4,8 @@
 }
 .sequenceAlignment p {
     font-family: monospace;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
 }
 .sequenceData p {
     font-family: var(--font-family);

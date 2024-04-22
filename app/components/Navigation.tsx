@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import styles from "./Navigation.module.css";
 import Link from "next/link";
 
 const Navigation = () => {
   // Replace Logo Image
-  //   Could make a pun about how ROSEARCH could be Ro Search or Rose Arch
+  // Could make a pun about how ROSEARCH could be Ro Search or Rose Arch
   return (
     <nav className={styles.navigationBar}>
       <div className={styles.navigationLeft}>
