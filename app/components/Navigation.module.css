@@ -1,11 +1,18 @@
 .navigationBar {
+    width: calc(100vw - 17px);
+    height: 100px;
+    padding: 10px;
+    background-color: var(--primary-bg);
+    border: 2px solid var(--primary-border);
+}
+.navigationDiv {
     display: flex;
     flex-direction: row;
     margin: auto;
     align-items: center;
     padding: 20px;
-    width: calc(100vw - 16px);
-    height: 80px;
+    width: calc(100vw - 40px);
+    height: 76px;
     background-color: var(--tertiary-bg);
     color: var(--primary-text);
     position: relative;
@@ -45,7 +52,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .navigationBar {
+    .navigationDiv {
         flex-direction: column;
     }
     .navigationLeft, .navigationRight {
@@ -53,23 +60,25 @@
         left: 0;
         right: 0;
     }
+    .navigationLeft {
+        margin-bottom: 16px;
+    }
     .navigationRight ul {
         display: none;
     }
     .navigationBar:hover {
-        height: calc(80px + (40px * 4) + 20px);
+        height: calc(86px + (40px * 3) + 20px);
     }
     .navigationBar:hover .navigationRight ul {
         display: flex;
         flex-direction: column;
         margin: auto;
-        margin-top: 20px;
         text-align: center;
     }
     .navigationBar:hover .navigationRight ul li {
-        width: calc(100vw - 16px);
+        width: calc(100vw - 40px);
         margin: 0;
-        background-color: var(--primary-bg);
+        background-color: var(--tertiary-bg);
         border-bottom: 1px solid var(--primary-border);
     }
     .navigationBar:hover .navigationRight ul:nth-child(1) {

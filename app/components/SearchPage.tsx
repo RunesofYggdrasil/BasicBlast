@@ -16,7 +16,7 @@ const generateNucleotideSequence = (sequenceLength: number) => {
   return nucleotideString;
 };
 
-const BlastPage = () => {
+const SearchPage = () => {
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
@@ -31,7 +31,6 @@ const BlastPage = () => {
   // Note: Use Sequence ID as Key
   return (
     <>
-      <Navigation />
       <DisplaySelect
         currentDisplay={defaultDisplay}
         setDisplay={displaySetters}
@@ -59,4 +58,4 @@ const BlastPage = () => {
   );
 };
 
-export default BlastPage;
+export default SearchPage;
