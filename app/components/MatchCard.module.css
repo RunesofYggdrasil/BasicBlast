@@ -66,3 +66,7 @@
 .cardFoot p {
     color: var(--secondary-text);
 }
+
+.matchCard h1, .matchCard h2, .matchCard p {
+    font-family: var(--font-family);
+}

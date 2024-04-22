@@ -3,6 +3,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
+import Navigation from "../components/Navigation";
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -30,6 +31,7 @@ const BlastPage = () => {
   // Note: Use Sequence ID as Key
   return (
     <>
+      <Navigation />
       <DisplaySelect
         currentDisplay={defaultDisplay}
         setDisplay={displaySetters}

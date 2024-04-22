@@ -22,7 +22,7 @@ const SequenceCard = ({ sequence, sequenceID }: SequenceProps) => {
 
   return (
     <>
-      <div>
+      <div className={styles.sequenceData}>
         <p>{sequence.length}</p>
       </div>
       <div className={styles.sequenceAlignment}>

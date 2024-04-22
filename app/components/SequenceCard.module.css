@@ -5,3 +5,6 @@
 .sequenceAlignment p {
     font-family: monospace;
 }
+.sequenceData p {
+    font-family: var(--font-family);
+}

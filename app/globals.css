@@ -14,6 +14,8 @@
   --primary-graphic: #9e009e;
   --secondary-graphic: #5b00d3;
   --tertiary-graphic: #001d7e;
+
+  --font-family: 'Times New Roman', Times, serif;
 }
 
 @media (prefers-color-scheme: dark) {

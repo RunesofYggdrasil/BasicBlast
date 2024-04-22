@@ -1,0 +1,36 @@
+.navigationBar {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    padding: 20px;
+    width: calc(100vw - 16px);
+    height: 60px;
+    background-color: var(--tertiary-bg);
+    color: var(--primary-text);
+    position: relative;
+}
+.navigationLeft {
+    position: absolute;
+    left: 20px;
+}
+.navigationRight {
+    position: absolute;
+    right: 20px;
+}
+.navigationRight ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+.navigationRight li {
+    margin-left: 20px;
+}
+.navigationRight a {
+    text-decoration: none;
+}
+.navigationBar p, .navigationBar a {
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 1.2em;
+}
