@@ -3,7 +3,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
-import Navigation from "../components/Navigation";
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -27,6 +26,7 @@ const SearchPage = () => {
     let randomLength: number = Math.floor(Math.random() * 500);
     sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
   }
+  const query: string = generateNucleotideSequence(50);
 
   // Note: Use Sequence ID as Key
   return (
@@ -47,7 +47,8 @@ const SearchPage = () => {
             titleSpecies="Test Species"
             titleBrief="Test Brief"
             bodyDescription="Test Description"
-            bodySequence={sequence}
+            bodyQuery={query}
+            bodySubject={sequence}
             bodySequenceID="Test ID"
             footUser="Test User"
             footDate="Test Date"

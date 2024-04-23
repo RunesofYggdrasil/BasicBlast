@@ -12,7 +12,8 @@ interface MatchProps {
   titleSpecies: string;
   titleBrief: string;
   bodyDescription: string;
-  bodySequence: string;
+  bodyQuery: string;
+  bodySubject: string;
   bodySequenceID: string;
   footUser: string;
   footDate: string;
@@ -25,7 +26,8 @@ const MatchCard = ({
   titleSpecies,
   titleBrief,
   bodyDescription,
-  bodySequence,
+  bodyQuery,
+  bodySubject,
   bodySequenceID,
   footUser,
   footDate,
@@ -63,7 +65,11 @@ const MatchCard = ({
             <hr />
           </div>
           <div>
-            <SequenceCard sequence={bodySequence} sequenceID={bodySequenceID} />
+            <SequenceCard
+              querySequence={bodyQuery}
+              subjectSequence={bodySubject}
+              sequenceID={bodySequenceID}
+            />
           </div>
         </div>
         <div
