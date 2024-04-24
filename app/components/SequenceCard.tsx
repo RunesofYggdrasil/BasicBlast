@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./SequenceCard.module.css";
+import ComparisonMatrix from "./ComparisonMatrix";
 
 interface SequenceProps {
   querySequence: string;
