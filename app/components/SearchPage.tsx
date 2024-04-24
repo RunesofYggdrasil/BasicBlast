@@ -23,7 +23,7 @@ const SearchPage = () => {
   // Test Setup
   const sequenceArray: string[] = [];
   for (let sequenceIndex = 0; sequenceIndex < 10; sequenceIndex++) {
-    let randomLength: number = Math.floor(Math.random() * 500);
+    let randomLength: number = Math.floor(Math.random() * 200);
     sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
   }
   const query: string = generateNucleotideSequence(50);

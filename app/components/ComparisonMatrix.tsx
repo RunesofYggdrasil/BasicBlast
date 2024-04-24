@@ -26,6 +26,20 @@ let ComparisonMatrix = function (
   const getMatrixAtIndex = function (iIndex: number, jIndex: number): number {
     return compMatrix[iIndex][jIndex];
   };
+  const getLargestIndex = function (): number[] {
+    const largestIndex = [0, 0];
+    let largestValue = 0;
+    for (let rowIndex = 1; rowIndex < rowCount; rowIndex++) {
+      for (let colIndex = 1; colIndex < colCount; colIndex++) {
+        if (getMatrixAtIndex(rowIndex, colIndex) >= largestValue) {
+          largestValue = getMatrixAtIndex(rowIndex, colIndex);
+          largestIndex[0] = rowIndex;
+          largestIndex[1] = colIndex;
+        }
+      }
+    }
+    return largestIndex;
+  };
 
   const getSimilarityScore = function (
     comparisonType: string,
@@ -69,7 +83,7 @@ let ComparisonMatrix = function (
   // Example uses +3 Scoring and -2 Linear Gap Penalty
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 3;
-    const gapPenaltyOpen = 2;
+    const gapPenaltyOpen = 5;
     const gapPenaltyExtend = 2;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
@@ -101,7 +115,29 @@ let ComparisonMatrix = function (
     return compMatrix;
   };
 
-  return { getMatrix, getEntireScore };
+  const getTraceback = function (iIndex: number, jIndex: number): string[] {
+    const tracebackArray = ["", ""];
+    const diagonalValue = getMatrixAtIndex(iIndex - 1, jIndex - 1);
+    const aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
+    if (diagonalValue == 0 || aboveValue == 0) {
+      tracebackArray[0] += subjectSequence[iIndex - 1];
+      tracebackArray[1] += querySequence[jIndex - 1];
+    } else {
+      if (diagonalValue >= aboveValue) {
+        tracebackArray[0] +=
+          getTraceback(iIndex - 1, jIndex - 1)[0] + subjectSequence[iIndex - 1];
+        tracebackArray[1] +=
+          getTraceback(iIndex - 1, jIndex - 1)[1] + querySequence[jIndex - 1];
+      } else {
+        tracebackArray[0] +=
+          getTraceback(iIndex - 1, jIndex)[0] + subjectSequence[iIndex - 1];
+        tracebackArray[1] += getTraceback(iIndex - 1, jIndex)[1] + "-";
+      }
+    }
+    return tracebackArray;
+  };
+
+  return { getMatrix, getLargestIndex, getEntireScore, getTraceback };
 };
 
 export default ComparisonMatrix;

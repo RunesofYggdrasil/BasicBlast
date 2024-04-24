@@ -13,6 +13,14 @@ const SequenceCard = ({
   subjectSequence,
   sequenceID,
 }: SequenceProps) => {
+  const compMatrix = ComparisonMatrix(querySequence, subjectSequence);
+  compMatrix.getEntireScore();
+  console.log(
+    compMatrix.getTraceback(
+      compMatrix.getLargestIndex()[0],
+      compMatrix.getLargestIndex()[1]
+    )
+  );
   return (
     <>
       <div className={styles.sequenceData}>
