@@ -83,8 +83,8 @@ let ComparisonMatrix = function (
   // Example uses +3 Scoring and -2 Linear Gap Penalty
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 3;
-    const gapPenaltyOpen = 5;
-    const gapPenaltyExtend = 2;
+    const gapPenaltyOpen = 3;
+    const gapPenaltyExtend = 1;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
       getSimilarityScore("DNA", iIndex, jIndex) * scoreBonus;
