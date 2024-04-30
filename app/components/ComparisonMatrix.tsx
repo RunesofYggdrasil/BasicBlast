@@ -23,6 +23,24 @@ let ComparisonMatrix = function (
   const getMatrix = function () {
     return compMatrix;
   };
+  const getMatrixString = function () {
+    let matrixString = "[";
+    for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+      for (let colIndex = 0; colIndex < colCount; colIndex++) {
+        if (colIndex < colCount - 1) {
+          matrixString += compMatrix[rowIndex][colIndex] + ", ";
+        } else {
+          if (rowIndex < rowCount - 1) {
+            matrixString += compMatrix[rowIndex][colIndex] + "\n";
+          } else {
+            matrixString += compMatrix[rowIndex][colIndex];
+          }
+        }
+      }
+    }
+    matrixString += "]";
+    return matrixString;
+  };
   const getMatrixAtIndex = function (iIndex: number, jIndex: number): number {
     return compMatrix[iIndex][jIndex];
   };
@@ -80,10 +98,9 @@ let ComparisonMatrix = function (
     }
   };
 
-  // Example uses +3 Scoring and -2 Linear Gap Penalty
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 3;
-    const gapPenaltyOpen = 3;
+    const gapPenaltyOpen = 2;
     const gapPenaltyExtend = 1;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
@@ -137,7 +154,13 @@ let ComparisonMatrix = function (
     return tracebackArray;
   };
 
-  return { getMatrix, getLargestIndex, getEntireScore, getTraceback };
+  return {
+    getMatrix,
+    getMatrixString,
+    getLargestIndex,
+    getEntireScore,
+    getTraceback,
+  };
 };
 
 export default ComparisonMatrix;
