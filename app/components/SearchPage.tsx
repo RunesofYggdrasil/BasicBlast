@@ -3,6 +3,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
+import { createBrowserClient } from "@supabase/ssr";
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -15,18 +16,31 @@ const generateNucleotideSequence = (sequenceLength: number) => {
   return nucleotideString;
 };
 
+const getSupabaseData = async () => {
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+
+  const { data, error } = await supabase.from("users").select("*");
+  console.log(data);
+  return data;
+};
+
 const SearchPage = () => {
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
 
+  getSupabaseData();
+
   // Test Setup
   const sequenceArray: string[] = [];
   for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
-    let randomLength: number = Math.floor(Math.random() * 50);
+    let randomLength: number = Math.floor(Math.random() * 1);
     sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
   }
-  const query: string = generateNucleotideSequence(30);
+  const query: string = generateNucleotideSequence(1);
 
   // Note: Use Sequence ID as Key
   return (
