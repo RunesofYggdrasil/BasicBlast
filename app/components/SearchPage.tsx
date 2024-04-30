@@ -3,6 +3,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
+import { createClient } from "@supabase/supabase-js";
 import { createBrowserClient } from "@supabase/ssr";
 
 // Test Setup
@@ -17,22 +18,24 @@ const generateNucleotideSequence = (sequenceLength: number) => {
 };
 
 const getSupabaseData = async () => {
-  const supabase = createBrowserClient(
+  const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const { data, error } = await supabase.from("users").select("*");
-  console.log(data);
-  return data;
+  const { data: users, error } = await supabase.from("users").select("*");
+  if (error) {
+    console.log(error);
+    return null;
+  } else {
+    return users;
+  }
 };
 
 const SearchPage = () => {
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
-
-  const data = getSupabaseData();
 
   // Test Setup
   const sequenceArray: string[] = [];
