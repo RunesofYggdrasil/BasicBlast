@@ -100,7 +100,7 @@ let ComparisonMatrix = function (
 
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 3;
-    const gapPenaltyOpen = 2;
+    const gapPenaltyOpen = 3;
     const gapPenaltyExtend = 1;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +

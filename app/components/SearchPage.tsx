@@ -32,15 +32,15 @@ const SearchPage = () => {
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
 
-  getSupabaseData();
+  const data = getSupabaseData();
 
   // Test Setup
   const sequenceArray: string[] = [];
   for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
-    let randomLength: number = Math.floor(Math.random() * 1);
+    let randomLength: number = Math.floor(Math.random() * 20);
     sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
   }
-  const query: string = generateNucleotideSequence(1);
+  const query: string = generateNucleotideSequence(10);
 
   // Note: Use Sequence ID as Key
   return (
