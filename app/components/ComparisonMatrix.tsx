@@ -134,8 +134,13 @@ let ComparisonMatrix = function (
 
   const getTraceback = function (iIndex: number, jIndex: number): string[] {
     const tracebackArray = ["", ""];
-    const diagonalValue = getMatrixAtIndex(iIndex - 1, jIndex - 1);
-    const aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
+    let diagonalValue = 0;
+    let aboveValue = 0;
+    if (iIndex > 0 && jIndex > 0) {
+      diagonalValue = getMatrixAtIndex(iIndex - 1, jIndex - 1);
+    } else if (iIndex > 0) {
+      aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
+    }
     if (diagonalValue == 0 || aboveValue == 0) {
       tracebackArray[0] += subjectSequence[iIndex - 1];
       tracebackArray[1] += querySequence[jIndex - 1];
