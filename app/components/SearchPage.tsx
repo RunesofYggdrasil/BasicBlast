@@ -35,7 +35,7 @@ const getSupabaseData = () => {
     }
   });
 };
-const addSupabaseData = async (index: number, sequence: string) => {
+const addSupabaseData = (index: number, sequence: string) => {
   return new Promise(async (resolve) => {
     const { data: seq, error } = await supabase
       .from("seq")
@@ -49,18 +49,7 @@ const addSupabaseData = async (index: number, sequence: string) => {
   });
 };
 
-const test = async () => {
-  const data1 = await getSupabaseData();
-  // const data2 = await addSupabaseData();
-  const data3 = await getSupabaseData();
-  console.log(data1);
-  // console.log(data2);
-  console.log(data3);
-};
-
 const SearchPage = () => {
-  test();
-
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
