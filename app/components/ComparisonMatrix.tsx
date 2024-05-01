@@ -138,6 +138,7 @@ let ComparisonMatrix = function (
     let aboveValue = 0;
     if (iIndex > 0 && jIndex > 0) {
       diagonalValue = getMatrixAtIndex(iIndex - 1, jIndex - 1);
+      aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
     } else if (iIndex > 0) {
       aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
     }

@@ -57,10 +57,10 @@ const SearchPage = () => {
   // Test Setup
   const sequenceArray: string[] = [];
   for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
-    let randomLength: number = Math.floor(Math.random() * 20);
+    let randomLength: number = Math.floor(Math.random() * 50);
     sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
   }
-  const query: string = generateNucleotideSequence(10);
+  const query: string = generateNucleotideSequence(30);
 
   // Note: Use Sequence ID as Key
   return (
