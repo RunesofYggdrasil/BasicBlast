@@ -4,7 +4,11 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
 import { createClient } from "@supabase/supabase-js";
-import { createBrowserClient } from "@supabase/ssr";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -17,22 +21,46 @@ const generateNucleotideSequence = (sequenceLength: number) => {
   return nucleotideString;
 };
 
-const getSupabaseData = async () => {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+const getSupabaseData = () => {
+  return new Promise(async (resolve) => {
+    const { data: seq, error } = await supabase
+      .from("seq")
+      .select("*")
+      .gt("id", 0);
+    if (error) {
+      console.log(error);
+      resolve(null);
+    } else {
+      resolve(seq);
+    }
+  });
+};
+const addSupabaseData = async (index: number, sequence: string) => {
+  return new Promise(async (resolve) => {
+    const { data: seq, error } = await supabase
+      .from("seq")
+      .insert({ id: index, seq: sequence });
+    if (error) {
+      console.log(error);
+      resolve(null);
+    } else {
+      resolve(seq);
+    }
+  });
+};
 
-  const { data: users, error } = await supabase.from("users").select("*");
-  if (error) {
-    console.log(error);
-    return null;
-  } else {
-    return users;
-  }
+const test = async () => {
+  const data1 = await getSupabaseData();
+  // const data2 = await addSupabaseData();
+  const data3 = await getSupabaseData();
+  console.log(data1);
+  // console.log(data2);
+  console.log(data3);
 };
 
 const SearchPage = () => {
+  test();
+
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
