@@ -3,12 +3,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "../components/MatchCard";
 import DisplaySelect from "../components/DisplaySelect";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -19,34 +13,6 @@ const generateNucleotideSequence = (sequenceLength: number) => {
     nucleotideString += nucleotides[randomIndex];
   }
   return nucleotideString;
-};
-
-const getSupabaseData = () => {
-  return new Promise(async (resolve) => {
-    const { data: seq, error } = await supabase
-      .from("seq")
-      .select("*")
-      .gt("id", 0);
-    if (error) {
-      console.log(error);
-      resolve(null);
-    } else {
-      resolve(seq);
-    }
-  });
-};
-const addSupabaseData = (index: number, sequence: string) => {
-  return new Promise(async (resolve) => {
-    const { data: seq, error } = await supabase
-      .from("seq")
-      .insert({ id: index, seq: sequence });
-    if (error) {
-      console.log(error);
-      resolve(null);
-    } else {
-      resolve(seq);
-    }
-  });
 };
 
 const SearchPage = () => {
