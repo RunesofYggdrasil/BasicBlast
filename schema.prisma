@@ -10,7 +10,7 @@ datasource db {
 
 model User {
     id Int @default(autoincrement()) @id
-    username String? @db.VarChar(32) @unique
+    username String @db.VarChar(32) @unique
     email String @unique
     password String
     posts Sequence[]
