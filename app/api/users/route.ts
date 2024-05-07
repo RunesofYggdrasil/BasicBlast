@@ -8,4 +8,11 @@ const GET = async (req: NextRequest) => {
   });
 };
 
-export { GET };
+const POST = async (req: NextRequest) => {
+  const users = await prisma.user.findMany();
+  return NextResponse.json({
+    users,
+  });
+};
+
+export { GET, POST };
