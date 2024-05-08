@@ -31,7 +31,7 @@ model Sequence {
 }
 
 model Match {
-    id String @default(cuid()) @id
+    id Int @default(autoincrement()) @id
     comp String
     identities Int
     query Sequence @relation(name: "query", fields: [queryID], references: [id])
