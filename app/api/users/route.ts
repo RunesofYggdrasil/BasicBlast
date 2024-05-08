@@ -14,6 +14,7 @@ const GET = async (req: NextRequest) => {
   }
 };
 
+// Encrypt Password
 const POST = async (req: NextRequest) => {
   try {
     const res = await req.json();
