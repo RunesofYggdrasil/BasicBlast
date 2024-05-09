@@ -8,7 +8,7 @@ const fetchDB = async (
     if (methodType == "GET") {
       const fetchResult = await fetch(routeString);
       const data = await fetchResult.json();
-      console.log(data);
+      return data;
     } else {
       const fetchResult = await fetch(routeString, {
         method: methodType,
@@ -18,9 +18,12 @@ const fetchDB = async (
         body: bodyString,
       });
       const data = await fetchResult.json();
-      console.log(data);
+      return data;
     }
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
+
+export default fetchDB;
