@@ -1,8 +1,12 @@
 "use client";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
-import MatchCard from "../components/MatchCard";
-import DisplaySelect from "../components/DisplaySelect";
+import MatchCard from "./MatchCard";
+import DisplaySelect from "./DisplaySelect";
+
+interface SequenceProps {
+  sequenceArray: string[];
+}
 
 // Test Setup
 const generateNucleotideSequence = (sequenceLength: number) => {
@@ -15,17 +19,16 @@ const generateNucleotideSequence = (sequenceLength: number) => {
   return nucleotideString;
 };
 
-const SearchPage = () => {
+const SearchPage = ({ sequenceArray }: SequenceProps) => {
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
 
   // Test Setup
-  const sequenceArray: string[] = [];
-  for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
-    let randomLength: number = Math.floor(Math.random() * 50);
-    sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
-  }
+  // for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
+  //   let randomLength: number = Math.floor(Math.random() * 50);
+  //   sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
+  // }
   const query: string = generateNucleotideSequence(30);
 
   // Note: Use Sequence ID as Key

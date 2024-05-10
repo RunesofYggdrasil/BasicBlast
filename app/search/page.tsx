@@ -1,8 +1,14 @@
-import React from "react";
-import SearchPage from "../components/SearchPage";
+"use server";
 
-const Search = () => {
-  return <SearchPage />;
-};
+import fetchDB from "../api/fetch";
+import SearchPage from "../components/SequencePage";
 
-export default Search;
+export default async function Search() {
+  const sequenceArray = [];
+  const data = await fetchDB("/api/sequences", "GET", "N/A");
+  const sequences = data.sequences;
+  for (let dataIndex = 0; dataIndex < sequences.length; dataIndex++) {
+    sequenceArray[dataIndex] = sequences[dataIndex].sequence;
+  }
+  return <SearchPage sequenceArray={sequenceArray} />;
+}
