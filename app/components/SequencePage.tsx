@@ -25,14 +25,7 @@ const SearchPage = ({ sequenceArray }: SequenceProps) => {
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
 
-  // Test Setup
-  // for (let sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++) {
-  //   let randomLength: number = Math.floor(Math.random() * 50);
-  //   sequenceArray[sequenceIndex] = generateNucleotideSequence(randomLength);
-  // }
   const query: string = generateNucleotideSequence(30);
-
-  // Note: Use Sequence ID as Key
   return (
     <>
       <DisplaySelect
