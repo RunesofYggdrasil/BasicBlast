@@ -10,8 +10,8 @@ interface MatchProps {
   displaySetter: Dispatch<SetStateAction<string>>;
   titleName: string;
   titleSpecies: string;
-  titleBrief: string;
-  bodyDescription: string;
+  titleBrief: string | null;
+  bodyDescription: string | null;
   bodyQuery: string;
   bodySubject: string;
   bodySequenceID: string;

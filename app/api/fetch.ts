@@ -6,7 +6,7 @@ const fetchDB = async (
   const routeString = "http://localhost:3000" + route;
   try {
     if (methodType == "GET") {
-      const fetchResult = await fetch(routeString);
+      const fetchResult = await fetch(routeString, { cache: "no-store" });
       const data = await fetchResult.json();
       return data;
     } else {

@@ -3,9 +3,10 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MatchCard from "./MatchCard";
 import DisplaySelect from "./DisplaySelect";
+import { Sequence } from "@prisma/client";
 
 interface SequenceProps {
-  sequenceArray: string[];
+  sequenceArray: Sequence[];
 }
 
 // Test Setup
@@ -43,16 +44,16 @@ const SearchPage = ({ sequenceArray }: SequenceProps) => {
         displaySetters[index + 1] = setDisplay;
         return (
           <MatchCard
-            key={index}
+            key={sequence.id}
             displaySetting={currentDisplay}
             displaySetter={setDisplay}
-            titleName="Test Name"
-            titleSpecies="Test Species"
-            titleBrief="Test Brief"
-            bodyDescription="Test Description"
+            titleName={sequence.name}
+            titleSpecies={sequence.species}
+            titleBrief={sequence.brief}
+            bodyDescription={sequence.description}
             bodyQuery={query}
-            bodySubject={sequence}
-            bodySequenceID="Test ID"
+            bodySubject={sequence.sequence}
+            bodySequenceID={sequence.id.toString()}
             footUser="Test User"
             footDate="Test Date"
           />
