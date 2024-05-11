@@ -17,12 +17,13 @@ const GET = async (req: NextRequest) => {
 const POST = async (req: NextRequest) => {
   try {
     const res = await req.json();
-    const duplicate = await prisma.sequence.findMany({
+    const duplicate = await prisma.sequence.findFirst({
       where: {
         sequence: res.sequence,
+        posted: true,
       },
     });
-    if (duplicate.length > 0) {
+    if (duplicate) {
       return NextResponse.json({
         duplicate,
       });
