@@ -5,7 +5,7 @@ const path = "/api/matches/";
 const GET = async (req: NextRequest) => {
   try {
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
-    const match = await prisma.match.findMany({
+    const match = await prisma.match.findFirst({
       where: { id: idVal },
     });
     return NextResponse.json({

@@ -5,7 +5,7 @@ const path = "/api/sequences/";
 const GET = async (req: NextRequest) => {
   try {
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
-    const sequence = await prisma.sequence.findMany({
+    const sequence = await prisma.sequence.findFirst({
       where: { id: idVal },
     });
     return NextResponse.json({

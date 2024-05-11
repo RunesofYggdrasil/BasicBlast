@@ -6,7 +6,7 @@ const path = "/api/users/";
 const GET = async (req: NextRequest) => {
   try {
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
-    const user = await prisma.user.findMany({
+    const user = await prisma.user.findFirst({
       where: { id: idVal },
     });
     return NextResponse.json({
