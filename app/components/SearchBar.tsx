@@ -8,14 +8,14 @@ const SearchBar = () => {
     <div className={styles.searchDiv}>
       <form className={styles.searchForm}>
         <label htmlFor="search" className={styles.searchLabel}>
-          Input Sequence
+          Input Sequence:
         </label>
         <input
           type="search"
           id="search"
           className={styles.searchInput}
           name="search"
-          placeholder="Input Sequence"
+          placeholder="Input Sequence Here"
         />
         <input type="submit" className={styles.searchSubmit} value="SEARCH" />
       </form>
