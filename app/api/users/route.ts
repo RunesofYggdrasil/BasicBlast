@@ -37,4 +37,17 @@ const POST = async (req: NextRequest) => {
   }
 };
 
-export { GET, POST };
+const DELETE = async (req: NextRequest) => {
+  try {
+    const users = await prisma.user.deleteMany();
+    return NextResponse.json({
+      users,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      error,
+    });
+  }
+};
+
+export { GET, POST, DELETE };

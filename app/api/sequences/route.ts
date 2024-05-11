@@ -37,4 +37,17 @@ const POST = async (req: NextRequest) => {
   }
 };
 
-export { GET, POST };
+const DELETE = async (req: NextRequest) => {
+  try {
+    const sequences = await prisma.sequence.deleteMany();
+    return NextResponse.json({
+      sequences,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      error,
+    });
+  }
+};
+
+export { GET, POST, DELETE };

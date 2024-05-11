@@ -35,4 +35,17 @@ const POST = async (req: NextRequest) => {
   }
 };
 
-export { GET, POST };
+const DELETE = async (req: NextRequest) => {
+  try {
+    const matches = await prisma.match.deleteMany();
+    return NextResponse.json({
+      matches,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      error,
+    });
+  }
+};
+
+export { GET, POST, DELETE };
