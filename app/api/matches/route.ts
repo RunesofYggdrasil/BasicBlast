@@ -19,7 +19,9 @@ const POST = async (req: NextRequest) => {
     const res = await req.json();
     const match = await prisma.match.create({
       data: {
-        comp: res.comp,
+        queryComparison: res.queryComparison,
+        subjectComparison: res.subjectComparison,
+        length: res.length,
         identities: res.identities,
         queryID: res.queryID,
         subjectID: res.subjectID,

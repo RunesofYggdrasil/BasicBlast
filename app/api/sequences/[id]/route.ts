@@ -29,6 +29,7 @@ const PUT = async (req: NextRequest) => {
         brief: res.brief,
         description: res.description,
         sequence: res.sequence,
+        posted: res.posted,
         posterID: res.posterID,
       },
       where: { id: idVal },

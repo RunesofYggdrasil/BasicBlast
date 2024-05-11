@@ -17,19 +17,31 @@ const GET = async (req: NextRequest) => {
 const POST = async (req: NextRequest) => {
   try {
     const res = await req.json();
-    const sequence = await prisma.sequence.create({
-      data: {
-        name: res.name,
-        species: res.species,
-        brief: res.brief,
-        description: res.description,
+    const duplicate = await prisma.sequence.findMany({
+      where: {
         sequence: res.sequence,
-        posterID: res.posterID,
       },
     });
-    return NextResponse.json({
-      sequence,
-    });
+    if (duplicate.length > 0) {
+      return NextResponse.json({
+        duplicate,
+      });
+    } else {
+      const sequence = await prisma.sequence.create({
+        data: {
+          name: res.name,
+          species: res.species,
+          brief: res.brief,
+          description: res.description,
+          sequence: res.sequence,
+          posted: res.posted,
+          posterID: res.posterID,
+        },
+      });
+      return NextResponse.json({
+        sequence,
+      });
+    }
   } catch (error) {
     return NextResponse.json({
       error,

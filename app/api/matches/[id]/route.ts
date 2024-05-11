@@ -24,7 +24,9 @@ const PUT = async (req: NextRequest) => {
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
     const match = await prisma.match.update({
       data: {
-        comp: res.comp,
+        queryComparison: res.queryComparison,
+        subjectComparison: res.subjectComparison,
+        length: res.length,
         identities: res.identities,
         queryID: res.queryID,
         subjectID: res.subjectID,

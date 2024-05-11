@@ -160,12 +160,22 @@ let ComparisonMatrix = function (
     return tracebackArray;
   };
 
+  const createMatch = function () {
+    const largestIndex = getLargestIndex();
+    const [subjectComparison, queryComparison] = getTraceback(
+      largestIndex[0],
+      largestIndex[1]
+    );
+    return subjectComparison + " " + queryComparison;
+  };
+
   return {
     getMatrix,
     getMatrixString,
     getLargestIndex,
     getEntireScore,
     getTraceback,
+    createMatch,
   };
 };
 

@@ -25,18 +25,21 @@ model Sequence {
     brief String?
     description String?
     sequence String
-    poster User @relation(fields: [posterID], references: [id])
-    posterID Int
+    posted Boolean @default(false)
+    poster User? @relation(fields: [posterID], references: [id])
+    posterID Int?
     date DateTime @default(now()) @updatedAt
-    query Match[] @relation(name: "query")
-    subject Match[] @relation(name: "subject")
+    queries Match[] @relation(name: "query")
+    subjects Match[] @relation(name: "subject")
 
     @@map("sequences")
 }
 
 model Match {
     id Int @default(autoincrement()) @id
-    comp String
+    queryComparison String @map("query_comparison")
+    subjectComparison String @map("subject_comparison")
+    length Int
     identities Int
     query Sequence @relation(name: "query", fields: [queryID], references: [id])
     queryID Int
