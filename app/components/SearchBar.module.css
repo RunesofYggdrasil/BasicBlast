@@ -1,0 +1,20 @@
+.searchDiv {
+  width: calc(100vw - 17px);
+  padding: 10px;
+  background-color: var(--primary-bg);
+  border: 2px solid var(--primary-border);
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--tertiary-bg);
+}
+
+.searchLabel,
+.searchInput,
+.searchSubmit {
+  color: var(--primary-text);
+  font-family: var(--font-family);
+}

@@ -20,7 +20,7 @@ const generateNucleotideSequence = (sequenceLength: number) => {
   return nucleotideString;
 };
 
-const SearchPage = ({ sequenceArray }: SequenceProps) => {
+const ResultsPage = ({ sequenceArray }: SequenceProps) => {
   const displaySetters: Dispatch<SetStateAction<string>>[] = [];
   let [defaultDisplay, setDefaultDisplay] = useState("Half");
   displaySetters[0] = setDefaultDisplay;
@@ -56,4 +56,4 @@ const SearchPage = ({ sequenceArray }: SequenceProps) => {
   );
 };
 
-export default SearchPage;
+export default ResultsPage;
