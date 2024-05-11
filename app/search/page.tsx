@@ -1,7 +1,7 @@
 "use server";
 
 import fetchDB from "../api/fetch";
-import SearchPage from "../components/SequencePage";
+import SearchPage from "../components/SearchPage";
 
 export default async function Search() {
   const sequenceArray = [];

@@ -14,6 +14,8 @@ model User {
     email String @unique
     password String
     posts Sequence[]
+
+    @@map("users")
 }
 
 model Sequence {
@@ -28,6 +30,8 @@ model Sequence {
     date DateTime @default(now()) @updatedAt
     query Match[] @relation(name: "query")
     subject Match[] @relation(name: "subject")
+
+    @@map("sequences")
 }
 
 model Match {
@@ -38,4 +42,6 @@ model Match {
     queryID Int
     subject Sequence @relation(name: "subject", fields: [subjectID], references: [id])
     subjectID Int
+
+    @@map("matches")
 }
