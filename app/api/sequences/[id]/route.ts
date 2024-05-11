@@ -22,21 +22,42 @@ const PUT = async (req: NextRequest) => {
   try {
     const res = await req.json();
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
-    const sequence = await prisma.sequence.update({
-      data: {
-        name: res.name,
-        species: res.species,
-        brief: res.brief,
-        description: res.description,
+    const duplicate = await prisma.sequence.findFirst({
+      where: {
+        NOT: {
+          id: idVal,
+        },
         sequence: res.sequence,
-        posted: res.posted,
-        posterID: res.posterID,
+        posted: true,
       },
-      where: { id: idVal },
     });
-    return NextResponse.json({
-      sequence,
-    });
+    if (duplicate) {
+      return NextResponse.json({
+        duplicate,
+      });
+    } else {
+      if ((res.posted && !res.posterID) || (!res.posted && res.posterID)) {
+        throw new Error(
+          "Invalid Input: Posted Posts Require Poster and Unposted Posts Prohibit Poster"
+        );
+      } else {
+        const sequence = await prisma.sequence.update({
+          data: {
+            name: res.name,
+            species: res.species,
+            brief: res.brief,
+            description: res.description,
+            sequence: res.sequence,
+            posted: res.posted,
+            posterID: res.posterID,
+          },
+          where: { id: idVal },
+        });
+        return NextResponse.json({
+          sequence,
+        });
+      }
+    }
   } catch (error) {
     return NextResponse.json({
       error,
