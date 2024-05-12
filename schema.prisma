@@ -21,7 +21,7 @@ model User {
 model Sequence {
     id Int @default(autoincrement()) @id
     name String
-    species String
+    species String?
     brief String?
     description String?
     sequence String

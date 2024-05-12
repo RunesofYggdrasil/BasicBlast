@@ -1,30 +1,27 @@
+"use server";
+
 import React from "react";
 import styles from "./SequenceCard.module.css";
 import ComparisonMatrix from "./ComparisonMatrix";
+import { Sequence } from "@prisma/client";
 
 interface SequenceProps {
-  querySequence: string;
-  subjectSequence: string;
-  sequenceID: string;
+  querySequence: Sequence;
+  subjectSequence: Sequence;
 }
 
-const SequenceCard = ({
-  querySequence,
-  subjectSequence,
-  sequenceID,
-}: SequenceProps) => {
+const SequenceCard = ({ querySequence, subjectSequence }: SequenceProps) => {
   const compMatrix = ComparisonMatrix(querySequence, subjectSequence);
-  compMatrix.getEntireScore();
   console.log(compMatrix.createMatch());
   return (
     <>
       <div className={styles.sequenceData}>
-        <p>{subjectSequence.length}</p>
+        <p>{subjectSequence.sequence.length}</p>
       </div>
       <div className={styles.sequenceAlignment}>
         <div className={styles.rowAlignment}>
-          <p>{querySequence}</p>
-          <p>{subjectSequence}</p>
+          <p>{querySequence.sequence}</p>
+          <p>{subjectSequence.sequence}</p>
         </div>
       </div>
     </>

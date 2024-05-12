@@ -1,12 +1,14 @@
+import { Sequence } from "@prisma/client";
+
 // Source: https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 let ComparisonMatrix = function (
-  querySequence: string,
-  subjectSequence: string
+  querySequence: Sequence,
+  subjectSequence: Sequence
 ) {
   const compMatrix: number[][] = [];
   compMatrix.length = 0;
-  const rowCount = subjectSequence.length + 1;
-  const colCount = querySequence.length + 1;
+  const rowCount = subjectSequence.sequence.length + 1;
+  const colCount = querySequence.sequence.length + 1;
   for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
     let currentRow: number[] = [];
     currentRow.length = 0;
@@ -65,7 +67,10 @@ let ComparisonMatrix = function (
     jIndex: number
   ): number {
     if (comparisonType == "DNA") {
-      if (querySequence[jIndex - 1] == subjectSequence[iIndex - 1]) {
+      if (
+        querySequence.sequence[jIndex - 1] ==
+        subjectSequence.sequence[iIndex - 1]
+      ) {
         return 1;
       } else {
         return -1;
@@ -143,17 +148,20 @@ let ComparisonMatrix = function (
       aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
     }
     if (diagonalValue == 0 || aboveValue == 0) {
-      tracebackArray[0] += subjectSequence[iIndex - 1];
-      tracebackArray[1] += querySequence[jIndex - 1];
+      tracebackArray[0] += subjectSequence.sequence[iIndex - 1];
+      tracebackArray[1] += querySequence.sequence[jIndex - 1];
     } else {
       if (diagonalValue >= aboveValue) {
         tracebackArray[0] +=
-          getTraceback(iIndex - 1, jIndex - 1)[0] + subjectSequence[iIndex - 1];
+          getTraceback(iIndex - 1, jIndex - 1)[0] +
+          subjectSequence.sequence[iIndex - 1];
         tracebackArray[1] +=
-          getTraceback(iIndex - 1, jIndex - 1)[1] + querySequence[jIndex - 1];
+          getTraceback(iIndex - 1, jIndex - 1)[1] +
+          querySequence.sequence[jIndex - 1];
       } else {
         tracebackArray[0] +=
-          getTraceback(iIndex - 1, jIndex)[0] + subjectSequence[iIndex - 1];
+          getTraceback(iIndex - 1, jIndex)[0] +
+          subjectSequence.sequence[iIndex - 1];
         tracebackArray[1] += getTraceback(iIndex - 1, jIndex)[1] + "-";
       }
     }
@@ -161,6 +169,7 @@ let ComparisonMatrix = function (
   };
 
   const createMatch = function () {
+    getEntireScore();
     const largestIndex = getLargestIndex();
     const [subjectComparison, queryComparison] = getTraceback(
       largestIndex[0],
