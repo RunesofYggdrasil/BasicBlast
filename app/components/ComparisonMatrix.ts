@@ -1,4 +1,5 @@
 import { Sequence } from "@prisma/client";
+import fetchDB from "../api/fetch";
 
 // Source: https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 let ComparisonMatrix = function (
@@ -167,11 +168,63 @@ let ComparisonMatrix = function (
     return tracebackArray;
   };
 
-  const createMatch = function () {
-    getEntireScore();
-    const largestIndex = getLargestIndex();
-    const sequenceComparison = getTraceback(largestIndex[0], largestIndex[1]);
-    return sequenceComparison[0] + " " + sequenceComparison[1];
+  const createMatch = async function () {
+    const postMatchBody = JSON.stringify({
+      queryComparison: "",
+      subjectComparison: "",
+      length: 0,
+      identities: 0,
+      queryID: querySequence.id,
+      subjectID: subjectSequence.id,
+    });
+    const postMatchRequest = await fetchDB(
+      "/api/matches",
+      "POST",
+      postMatchBody
+    );
+    let postMatchResponse;
+    if (postMatchRequest.duplicate) {
+      postMatchResponse = await fetchDB(
+        "/api/matches/" + postMatchRequest.duplicate.id,
+        "GET",
+        "N/A"
+      );
+      return postMatchResponse.match;
+    } else {
+      postMatchResponse = await fetchDB(
+        "/api/matches/" + postMatchRequest.match.id,
+        "GET",
+        "N/A"
+      );
+      getEntireScore();
+      const largestIndex = getLargestIndex();
+      const sequenceComparison = getTraceback(largestIndex[0], largestIndex[1]);
+      const sequenceLength = sequenceComparison[0].length;
+      let sequenceIdentities = 0;
+      for (
+        let sequenceIndex = 0;
+        sequenceIndex < sequenceComparison[1].length;
+        sequenceIndex++
+      ) {
+        if (sequenceComparison[1][sequenceIndex] != "-") {
+          sequenceIdentities++;
+        }
+      }
+      const putMatchBody = JSON.stringify({
+        queryComparison: sequenceComparison[1],
+        subjectComparison: sequenceComparison[0],
+        length: sequenceLength,
+        identities: sequenceIdentities,
+        queryID: querySequence.id,
+        subjectID: subjectSequence.id,
+      });
+      const putMatchRequest = await fetchDB(
+        "/api/matches/" + postMatchResponse.match.id,
+        "PUT",
+        putMatchBody
+      );
+      return putMatchRequest.match;
+    }
   };
 
   return {

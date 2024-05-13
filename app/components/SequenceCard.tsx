@@ -15,7 +15,8 @@ const SequenceCard = async ({
   subjectSequence,
 }: SequenceProps) => {
   const compMatrix = ComparisonMatrix(querySequence, subjectSequence);
-  console.log(compMatrix.createMatch());
+  const match = await compMatrix.createMatch();
+  console.log(match);
   return (
     <>
       <div className={styles.sequenceData}>
