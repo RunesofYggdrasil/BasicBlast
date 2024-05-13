@@ -46,5 +46,6 @@ model Match {
     subject Sequence @relation(name: "subject", fields: [subjectID], references: [id])
     subjectID Int
 
+    @@unique([queryID, subjectID])
     @@map("matches")
 }

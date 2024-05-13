@@ -17,19 +17,31 @@ const GET = async (req: NextRequest) => {
 const POST = async (req: NextRequest) => {
   try {
     const res = await req.json();
-    const match = await prisma.match.create({
-      data: {
-        queryComparison: res.queryComparison,
-        subjectComparison: res.subjectComparison,
-        length: res.length,
-        identities: res.identities,
+    const duplicate = await prisma.match.findFirst({
+      where: {
         queryID: res.queryID,
         subjectID: res.subjectID,
       },
     });
-    return NextResponse.json({
-      match,
-    });
+    if (duplicate) {
+      return NextResponse.json({
+        duplicate,
+      });
+    } else {
+      const match = await prisma.match.create({
+        data: {
+          queryComparison: res.queryComparison,
+          subjectComparison: res.subjectComparison,
+          length: res.length,
+          identities: res.identities,
+          queryID: res.queryID,
+          subjectID: res.subjectID,
+        },
+      });
+      return NextResponse.json({
+        match,
+      });
+    }
   } catch (error) {
     return NextResponse.json({
       error,

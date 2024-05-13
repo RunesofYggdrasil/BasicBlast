@@ -22,20 +22,35 @@ const PUT = async (req: NextRequest) => {
   try {
     const res = await req.json();
     const idVal = parseInt(req.nextUrl.pathname.split(path)[1]);
-    const match = await prisma.match.update({
-      data: {
-        queryComparison: res.queryComparison,
-        subjectComparison: res.subjectComparison,
-        length: res.length,
-        identities: res.identities,
+    const duplicate = await prisma.match.findFirst({
+      where: {
+        NOT: {
+          id: idVal,
+        },
         queryID: res.queryID,
         subjectID: res.subjectID,
       },
-      where: { id: idVal },
     });
-    return NextResponse.json({
-      match,
-    });
+    if (duplicate) {
+      return NextResponse.json({
+        duplicate,
+      });
+    } else {
+      const match = await prisma.match.update({
+        data: {
+          queryComparison: res.queryComparison,
+          subjectComparison: res.subjectComparison,
+          length: res.length,
+          identities: res.identities,
+          queryID: res.queryID,
+          subjectID: res.subjectID,
+        },
+        where: { id: idVal },
+      });
+      return NextResponse.json({
+        match,
+      });
+    }
   } catch (error) {
     return NextResponse.json({
       error,

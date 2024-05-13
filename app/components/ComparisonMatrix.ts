@@ -164,7 +164,6 @@ let ComparisonMatrix = function (
         tracebackArray[1] += verticalTraceback[1] + "-";
       }
     }
-    console.log(tracebackArray[0]);
     return tracebackArray;
   };
 
