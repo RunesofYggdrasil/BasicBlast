@@ -105,7 +105,7 @@ let ComparisonMatrix = function (
 
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 3;
-    const gapPenaltyOpen = 3;
+    const gapPenaltyOpen = 2;
     const gapPenaltyExtend = 1;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
@@ -152,30 +152,27 @@ let ComparisonMatrix = function (
       tracebackArray[1] += querySequence.sequence[jIndex - 1];
     } else {
       if (diagonalValue >= aboveValue) {
+        const diagonalTraceback = getTraceback(iIndex - 1, jIndex - 1);
         tracebackArray[0] +=
-          getTraceback(iIndex - 1, jIndex - 1)[0] +
-          subjectSequence.sequence[iIndex - 1];
+          diagonalTraceback[0] + subjectSequence.sequence[iIndex - 1];
         tracebackArray[1] +=
-          getTraceback(iIndex - 1, jIndex - 1)[1] +
-          querySequence.sequence[jIndex - 1];
+          diagonalTraceback[1] + querySequence.sequence[jIndex - 1];
       } else {
+        const verticalTraceback = getTraceback(iIndex - 1, jIndex);
         tracebackArray[0] +=
-          getTraceback(iIndex - 1, jIndex)[0] +
-          subjectSequence.sequence[iIndex - 1];
-        tracebackArray[1] += getTraceback(iIndex - 1, jIndex)[1] + "-";
+          verticalTraceback[0] + subjectSequence.sequence[iIndex - 1];
+        tracebackArray[1] += verticalTraceback[1] + "-";
       }
     }
+    console.log(tracebackArray[0]);
     return tracebackArray;
   };
 
   const createMatch = function () {
     getEntireScore();
     const largestIndex = getLargestIndex();
-    const [subjectComparison, queryComparison] = getTraceback(
-      largestIndex[0],
-      largestIndex[1]
-    );
-    return subjectComparison + " " + queryComparison;
+    const sequenceComparison = getTraceback(largestIndex[0], largestIndex[1]);
+    return sequenceComparison[0] + " " + sequenceComparison[1];
   };
 
   return {

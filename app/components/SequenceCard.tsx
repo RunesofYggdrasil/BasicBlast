@@ -10,7 +10,10 @@ interface SequenceProps {
   subjectSequence: Sequence;
 }
 
-const SequenceCard = ({ querySequence, subjectSequence }: SequenceProps) => {
+const SequenceCard = async ({
+  querySequence,
+  subjectSequence,
+}: SequenceProps) => {
   const compMatrix = ComparisonMatrix(querySequence, subjectSequence);
   console.log(compMatrix.createMatch());
   return (
