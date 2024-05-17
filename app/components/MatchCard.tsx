@@ -7,26 +7,29 @@ import { Sequence } from "@prisma/client";
 
 interface MatchProps {
   displaySetting: string;
-  querySequence: Sequence;
-  subjectSequence: Sequence;
+  match: {
+    subjectID: number;
+    subjectName: string;
+    subjectSpeciesBrief: string;
+    subjectDescription: string;
+    comparisonLength: number;
+    queryIdentities: number;
+    queryComparison: string;
+    subjectComparison: string;
+    subjectPoster: string;
+    subjectDate: string;
+  };
   children: React.ReactNode;
 }
 
-const MatchCard = ({
-  displaySetting,
-  querySequence,
-  subjectSequence,
-  children,
-}: MatchProps) => {
+const MatchCard = ({ displaySetting, match, children }: MatchProps) => {
   let [currentDisplay, setCurrentDisplay] = useState(displaySetting);
   return (
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
         <div className={styles.cardTitle}>
-          <h1>{subjectSequence.name}</h1>
-          <h2>
-            {subjectSequence.species}: {subjectSequence.brief}
-          </h2>
+          <h1>{match.subjectName}</h1>
+          <h2>{match.subjectSpeciesBrief}</h2>
           <div className={styles.displaySelect}>
             <DisplaySelect
               currentDisplay={currentDisplay}
@@ -47,7 +50,7 @@ const MatchCard = ({
               currentDisplay == "Full" ? "Display" : styles.displayNone
             }
           >
-            <p>{subjectSequence.description}</p>
+            <p>{match.subjectDescription}</p>
             <hr />
           </div>
           <div>{children}</div>
@@ -58,11 +61,9 @@ const MatchCard = ({
           <hr />
           <div className={styles.cardFoot}>
             <p className={styles.username}>
-              Submitted by {subjectSequence.posterID}
+              Submitted by {match.subjectPoster}
             </p>
-            <p className={styles.userdate}>
-              Submitted on {subjectSequence.date.toString()}
-            </p>
+            <p className={styles.userdate}>Submitted on {match.subjectDate}</p>
           </div>
         </div>
       </div>

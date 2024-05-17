@@ -7,22 +7,27 @@ import { Sequence } from "@prisma/client";
 import SequenceCard from "./SequenceCard";
 
 interface SequenceProps {
-  query: Sequence;
-  subjectArray: Sequence[];
+  matches: {
+    subjectID: number;
+    subjectName: string;
+    subjectSpeciesBrief: string;
+    subjectDescription: string;
+    comparisonLength: number;
+    queryIdentities: number;
+    queryComparison: string;
+    subjectComparison: string;
+    subjectPoster: string;
+    subjectDate: string;
+  }[];
 }
 
-const ResultsPage = ({ query, subjectArray }: SequenceProps) => {
+const ResultsPage = ({ matches }: SequenceProps) => {
   return (
     <>
-      {subjectArray.map((subject, index) => {
+      {matches.map((match, index) => {
         return (
-          <MatchCard
-            key={subject.id}
-            displaySetting="Half"
-            querySequence={query}
-            subjectSequence={subject}
-          >
-            <SequenceCard querySequence={query} subjectSequence={subject} />
+          <MatchCard key={match.subjectID} displaySetting="Half" match={match}>
+            <SequenceCard match={match} />
           </MatchCard>
         );
       })}

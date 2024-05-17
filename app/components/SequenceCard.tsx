@@ -2,30 +2,32 @@
 
 import React from "react";
 import styles from "./SequenceCard.module.css";
-import ComparisonMatrix from "./ComparisonMatrix";
-import { Sequence } from "@prisma/client";
 
 interface SequenceProps {
-  querySequence: Sequence;
-  subjectSequence: Sequence;
+  match: {
+    subjectID: number;
+    subjectName: string;
+    subjectSpeciesBrief: string;
+    subjectDescription: string;
+    comparisonLength: number;
+    queryIdentities: number;
+    queryComparison: string;
+    subjectComparison: string;
+    subjectPoster: string;
+    subjectDate: string;
+  };
 }
 
-const SequenceCard = async ({
-  querySequence,
-  subjectSequence,
-}: SequenceProps) => {
-  const compMatrix = ComparisonMatrix(querySequence, subjectSequence);
-  const match = await compMatrix.createMatch();
-  console.log(match);
+const SequenceCard = async ({ match }: SequenceProps) => {
   return (
     <>
       <div className={styles.sequenceData}>
-        <p>{subjectSequence.sequence.length}</p>
+        <p>{match.comparisonLength}</p>
       </div>
       <div className={styles.sequenceAlignment}>
         <div className={styles.rowAlignment}>
-          <p>{querySequence.sequence}</p>
-          <p>{subjectSequence.sequence}</p>
+          <p>{match.queryComparison}</p>
+          <p>{match.subjectComparison}</p>
         </div>
       </div>
     </>
