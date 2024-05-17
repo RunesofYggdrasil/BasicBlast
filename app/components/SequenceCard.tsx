@@ -1,5 +1,3 @@
-"use server";
-
 import React from "react";
 import styles from "./SequenceCard.module.css";
 
@@ -18,7 +16,7 @@ interface SequenceProps {
   };
 }
 
-const SequenceCard = async ({ match }: SequenceProps) => {
+const SequenceCard = ({ match }: SequenceProps) => {
   return (
     <>
       <div className={styles.sequenceData}>

@@ -7,6 +7,7 @@ import { Sequence } from "@prisma/client";
 
 interface MatchProps {
   displaySetting: string;
+  displaySetter: Dispatch<SetStateAction<string>>;
   match: {
     subjectID: number;
     subjectName: string;
@@ -22,8 +23,12 @@ interface MatchProps {
   children: React.ReactNode;
 }
 
-const MatchCard = ({ displaySetting, match, children }: MatchProps) => {
-  let [currentDisplay, setCurrentDisplay] = useState(displaySetting);
+const MatchCard = ({
+  displaySetting,
+  displaySetter,
+  match,
+  children,
+}: MatchProps) => {
   return (
     <div className={styles.matchCard}>
       <div className={styles.innerCard}>
@@ -32,14 +37,14 @@ const MatchCard = ({ displaySetting, match, children }: MatchProps) => {
           <h2>{match.subjectSpeciesBrief}</h2>
           <div className={styles.displaySelect}>
             <DisplaySelect
-              currentDisplay={currentDisplay}
-              setDisplay={setCurrentDisplay}
+              currentDisplay={displaySetting}
+              setDisplay={displaySetter}
             />
           </div>
         </div>
         <div
           className={
-            currentDisplay == "Full" || currentDisplay == "Half"
+            displaySetting == "Full" || displaySetting == "Half"
               ? styles.cardBody
               : styles.displayNone
           }
@@ -47,7 +52,7 @@ const MatchCard = ({ displaySetting, match, children }: MatchProps) => {
           <hr />
           <div
             className={
-              currentDisplay == "Full" ? "Display" : styles.displayNone
+              displaySetting == "Full" ? "Display" : styles.displayNone
             }
           >
             <p>{match.subjectDescription}</p>
@@ -56,7 +61,7 @@ const MatchCard = ({ displaySetting, match, children }: MatchProps) => {
           <div>{children}</div>
         </div>
         <div
-          className={currentDisplay == "Full" ? "Display" : styles.displayNone}
+          className={displaySetting == "Full" ? "Display" : styles.displayNone}
         >
           <hr />
           <div className={styles.cardFoot}>
