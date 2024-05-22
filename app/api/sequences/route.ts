@@ -20,7 +20,6 @@ const POST = async (req: NextRequest) => {
     const duplicate = await prisma.sequence.findFirst({
       where: {
         sequence: res.sequence,
-        posted: true,
       },
     });
     if (duplicate) {

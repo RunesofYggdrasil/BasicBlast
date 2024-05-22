@@ -2,16 +2,17 @@
 
 import React from "react";
 import styles from "./SearchBar.module.css";
+import { handleSearchSequence } from "@/lib/actions";
 
 const SearchBar = () => {
   return (
     <div className={styles.searchDiv}>
-      <form className={styles.searchForm}>
+      <form className={styles.searchForm} action={handleSearchSequence}>
         <label htmlFor="search" className={styles.searchLabel}>
           Input Sequence:
         </label>
         <input
-          type="search"
+          type="text"
           id="search"
           className={styles.searchInput}
           name="search"

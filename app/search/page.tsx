@@ -6,43 +6,17 @@ import ResultsPage from "../components/ResultsPage";
 import SearchBar from "../components/SearchBar";
 import ComparisonMatrix from "../components/ComparisonMatrix";
 
-// Test Setup
-const generateNucleotideSequence = (sequenceLength: number) => {
-  const nucleotides: string[] = ["G", "C", "A", "T"];
-  let nucleotideString: string = "";
-  for (let index = 0; index < sequenceLength; index++) {
-    let randomIndex: number = Math.floor(Math.random() * nucleotides.length);
-    nucleotideString += nucleotides[randomIndex];
-  }
-  return nucleotideString;
-};
+interface SearchProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-export default async function Search() {
-  const querySequence = generateNucleotideSequence(50);
-  const postQueryBody = JSON.stringify({
-    name: "Search",
-    sequence: querySequence,
-    posted: false,
-  });
-  const postQueryRequest = await fetchDB(
-    "/api/sequences",
-    "POST",
-    postQueryBody
+export default async function Search({ searchParams }: SearchProps) {
+  const getQueryRequest = await fetchDB(
+    "/api/sequences/" + searchParams.id,
+    "GET",
+    "N/A"
   );
-  let postQueryResponse;
-  if (postQueryRequest.duplicate) {
-    postQueryResponse = await fetchDB(
-      "/api/sequences/" + postQueryRequest.duplicate.id,
-      "GET",
-      "N/A"
-    );
-  } else {
-    postQueryResponse = await fetchDB(
-      "/api/sequences/" + postQueryRequest.sequence.id,
-      "GET",
-      "N/A"
-    );
-  }
+  const getQueryResponse = getQueryRequest.sequence;
 
   const matchesArray = [];
   const getSubjectRequest = await fetchDB(
@@ -59,7 +33,7 @@ export default async function Search() {
     );
 
     const comparisonMatrix = ComparisonMatrix(
-      postQueryResponse.sequence,
+      getQueryResponse,
       getSubjectResponse[dataIndex]
     );
     const createSubjectMatch: Match = await comparisonMatrix.createMatch();
@@ -92,7 +66,11 @@ export default async function Search() {
     };
     matchesArray[dataIndex] = match;
   }
-  return <ResultsPage matches={matchesArray} />;
+  return (
+    <>
+      <SearchBar /> <ResultsPage matches={matchesArray} />
+    </>
+  );
 }
 
 // export default async function Search() {
