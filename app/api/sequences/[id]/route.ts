@@ -28,6 +28,7 @@ const PUT = async (req: NextRequest) => {
           id: idVal,
         },
         sequence: res.sequence,
+        posted: res.posted,
       },
     });
     if (duplicate) {
