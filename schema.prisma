@@ -3,48 +3,42 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url = env("POSTGRES_PRISMA_URL")
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL")
     directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-model User {
-    id Int @default(autoincrement()) @id
-    username String @db.VarChar(32) @unique
-    email String @unique
-    password String
-    posts Sequence[]
-
-    @@map("users")
-}
-
 model Sequence {
-    id Int @default(autoincrement()) @id
-    name String
-    species String?
-    brief String?
+    id          Int      @id @default(autoincrement())
+    name        String
+    species     String?
+    brief       String?
     description String?
-    sequence String
-    posted Boolean @default(false)
-    poster User? @relation(fields: [posterID], references: [id])
-    posterID Int?
-    date DateTime @default(now()) @updatedAt
-    queries Match[] @relation(name: "query")
-    subjects Match[] @relation(name: "subject")
+    sequence    String
+    posted      Boolean  @default(false)
+    date        DateTime @default(now()) @updatedAt
+    queries     Match[]  @relation(name: "query")
+    subjects    Match[]  @relation(name: "subject")
 
     @@map("sequences")
 }
 
 model Match {
-    id Int @default(autoincrement()) @id
-    queryComparison String @map("query_comparison")
-    subjectComparison String @map("subject_comparison")
-    length Int
-    identities Int
-    query Sequence @relation(name: "query", fields: [queryID], references: [id])
-    queryID Int
-    subject Sequence @relation(name: "subject", fields: [subjectID], references: [id])
-    subjectID Int
+    id                Int       @id @default(autoincrement())
+    comparisonType    Algorithm @default(SMITHWATERMAN) @map("comparison_type")
+    queryComparison   String    @map("query_comparison")
+    subjectComparison String    @map("subject_comparison")
+    length            Int
+    identities        Int
+    query             Sequence  @relation(name: "query", fields: [queryID], references: [id])
+    queryID           Int
+    subject           Sequence  @relation(name: "subject", fields: [subjectID], references: [id])
+    subjectID         Int
 
     @@map("matches")
+}
+
+enum Algorithm {
+    SMITHWATERMAN
+    NEEDLEMANWUNSCH
 }

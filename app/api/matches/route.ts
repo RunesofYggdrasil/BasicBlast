@@ -30,6 +30,7 @@ const POST = async (req: NextRequest) => {
     } else {
       const match = await prisma.match.create({
         data: {
+          comparisonType: res.comparisonType,
           queryComparison: res.queryComparison,
           subjectComparison: res.subjectComparison,
           length: res.length,

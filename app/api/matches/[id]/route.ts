@@ -38,6 +38,7 @@ const PUT = async (req: NextRequest) => {
     } else {
       const match = await prisma.match.update({
         data: {
+          comparisonType: res.comparisonType,
           queryComparison: res.queryComparison,
           subjectComparison: res.subjectComparison,
           length: res.length,

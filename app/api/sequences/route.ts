@@ -28,26 +28,19 @@ const POST = async (req: NextRequest) => {
         duplicate,
       });
     } else {
-      if ((res.posted && !res.posterID) || (!res.posted && res.posterID)) {
-        throw new Error(
-          "Invalid Input: Posted Posts Require Poster and Unposted Posts Prohibit Poster"
-        );
-      } else {
-        const sequence = await prisma.sequence.create({
-          data: {
-            name: res.name,
-            species: res.species,
-            brief: res.brief,
-            description: res.description,
-            sequence: res.sequence,
-            posted: res.posted,
-            posterID: res.posterID,
-          },
-        });
-        return NextResponse.json({
-          sequence,
-        });
-      }
+      const sequence = await prisma.sequence.create({
+        data: {
+          name: res.name,
+          species: res.species,
+          brief: res.brief,
+          description: res.description,
+          sequence: res.sequence,
+          posted: res.posted,
+        },
+      });
+      return NextResponse.json({
+        sequence,
+      });
     }
   } catch (error) {
     return NextResponse.json({
