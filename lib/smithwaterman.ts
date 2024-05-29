@@ -1,8 +1,8 @@
+import fetchDB from "@/app/api/fetch";
 import { Sequence } from "@prisma/client";
-import fetchDB from "../api/fetch";
 
 // Source: https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
-let ComparisonMatrix = function (
+let SmithWaterman = function (
   querySequence: Sequence,
   subjectSequence: Sequence
 ) {
@@ -105,9 +105,9 @@ let ComparisonMatrix = function (
   };
 
   const getScore = function (iIndex: number, jIndex: number) {
-    const scoreBonus = 3;
+    const scoreBonus = 4;
     const gapPenaltyOpen = 2;
-    const gapPenaltyExtend = 1;
+    const gapPenaltyExtend = 3;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
       getSimilarityScore("DNA", iIndex, jIndex) * scoreBonus;
@@ -237,4 +237,4 @@ let ComparisonMatrix = function (
   };
 };
 
-export default ComparisonMatrix;
+export default SmithWaterman;
