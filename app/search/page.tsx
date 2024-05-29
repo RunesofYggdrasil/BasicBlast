@@ -32,12 +32,6 @@ export default async function Search({ searchParams }: SearchProps) {
   );
   const getSubjectResponse = getSubjectRequest.sequences;
   for (let dataIndex = 0; dataIndex < getSubjectResponse.length; dataIndex++) {
-    let getUserRequest = await fetchDB(
-      "/api/users/" + getSubjectResponse[dataIndex].posterID,
-      "GET",
-      "N/A"
-    );
-
     const comparisonMatrix = SmithWaterman(
       getQueryResponse,
       getSubjectResponse[dataIndex]
@@ -56,7 +50,7 @@ export default async function Search({ searchParams }: SearchProps) {
     let queryIdentities = createSubjectMatch.identities;
     let queryComparison = createSubjectMatch.queryComparison;
     let subjectComparison = createSubjectMatch.subjectComparison;
-    let subjectPoster = getUserRequest.user.username;
+    let subjectPoster = "Anonymous";
     let subjectDate = getSubjectResponse[dataIndex].date.toString();
     let match = {
       subjectID,

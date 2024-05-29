@@ -74,7 +74,7 @@ let SmithWaterman = function (
       ) {
         return 1;
       } else {
-        return -1;
+        return -2;
       }
     } else {
       return 0;
@@ -105,9 +105,9 @@ let SmithWaterman = function (
   };
 
   const getScore = function (iIndex: number, jIndex: number) {
-    const scoreBonus = 4;
-    const gapPenaltyOpen = 2;
-    const gapPenaltyExtend = 3;
+    const scoreBonus = 2;
+    const gapPenaltyOpen = 1;
+    const gapPenaltyExtend = 2;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
       getSimilarityScore("DNA", iIndex, jIndex) * scoreBonus;
@@ -211,6 +211,7 @@ let SmithWaterman = function (
         }
       }
       const putMatchBody = JSON.stringify({
+        comparisonType: "SMITHWATERMAN",
         queryComparison: sequenceComparison[1],
         subjectComparison: sequenceComparison[0],
         length: sequenceLength,
