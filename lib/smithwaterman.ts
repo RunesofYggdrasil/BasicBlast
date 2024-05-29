@@ -106,8 +106,8 @@ let SmithWaterman = function (
 
   const getScore = function (iIndex: number, jIndex: number) {
     const scoreBonus = 2;
-    const gapPenaltyOpen = 1;
-    const gapPenaltyExtend = 2;
+    const gapPenaltyOpen = 2;
+    const gapPenaltyExtend = 1;
     let firstEquation =
       getMatrixAtIndex(iIndex - 1, jIndex - 1) +
       getSimilarityScore("DNA", iIndex, jIndex) * scoreBonus;
@@ -168,6 +168,48 @@ let SmithWaterman = function (
     return tracebackArray;
   };
 
+  const getDoubleTraceback = function (
+    iIndex: number,
+    jIndex: number
+  ): string[] {
+    const tracebackArray = ["", ""];
+    let diagonalValue = 0;
+    let aboveValue = 0;
+    let besideValue = 0;
+    if (iIndex > 0 && jIndex > 0) {
+      diagonalValue = getMatrixAtIndex(iIndex - 1, jIndex - 1);
+      aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
+      besideValue = getMatrixAtIndex(iIndex, jIndex - 1);
+    } else if (iIndex > 0) {
+      aboveValue = getMatrixAtIndex(iIndex - 1, jIndex);
+    } else if (jIndex > 0) {
+      besideValue = getMatrixAtIndex(iIndex, jIndex - 1);
+    }
+    if (diagonalValue == 0 || aboveValue == 0 || besideValue == 0) {
+      tracebackArray[0] += subjectSequence.sequence[iIndex - 1];
+      tracebackArray[1] += querySequence.sequence[jIndex - 1];
+    } else {
+      if (diagonalValue >= aboveValue && diagonalValue >= besideValue) {
+        const diagonalTraceback = getDoubleTraceback(iIndex - 1, jIndex - 1);
+        tracebackArray[0] +=
+          diagonalTraceback[0] + subjectSequence.sequence[iIndex - 1];
+        tracebackArray[1] +=
+          diagonalTraceback[1] + querySequence.sequence[jIndex - 1];
+      } else if (aboveValue >= diagonalValue && aboveValue >= besideValue) {
+        const verticalTraceback = getDoubleTraceback(iIndex - 1, jIndex);
+        tracebackArray[0] +=
+          verticalTraceback[0] + subjectSequence.sequence[iIndex - 1];
+        tracebackArray[1] += verticalTraceback[1] + "-";
+      } else if (besideValue >= diagonalValue && besideValue >= aboveValue) {
+        const horizontalTraceback = getDoubleTraceback(iIndex, jIndex - 1);
+        tracebackArray[0] += horizontalTraceback[0] + "-";
+        tracebackArray[1] +=
+          horizontalTraceback[1] + querySequence.sequence[jIndex - 1];
+      }
+    }
+    return tracebackArray;
+  };
+
   const createMatch = async function () {
     const postMatchBody = JSON.stringify({
       queryComparison: "",
@@ -198,7 +240,10 @@ let SmithWaterman = function (
       );
       getEntireScore();
       const largestIndex = getLargestIndex();
-      const sequenceComparison = getTraceback(largestIndex[0], largestIndex[1]);
+      const sequenceComparison = getDoubleTraceback(
+        largestIndex[0],
+        largestIndex[1]
+      );
       const sequenceLength = sequenceComparison[0].length;
       let sequenceIdentities = 0;
       for (
@@ -206,7 +251,10 @@ let SmithWaterman = function (
         sequenceIndex < sequenceComparison[1].length;
         sequenceIndex++
       ) {
-        if (sequenceComparison[1][sequenceIndex] != "-") {
+        if (
+          sequenceComparison[1][sequenceIndex] ==
+          sequenceComparison[0][sequenceIndex]
+        ) {
           sequenceIdentities++;
         }
       }
