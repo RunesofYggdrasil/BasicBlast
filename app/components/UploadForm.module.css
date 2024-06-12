@@ -1,0 +1,32 @@
+.uploadDiv {
+  width: calc(100vw - 17px);
+  padding: 10px;
+  background-color: var(--primary-bg);
+  border: 2px solid var(--primary-border);
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--tertiary-bg);
+}
+
+.uploadLabel,
+.uploadInput,
+.uploadSequence,
+.uploadSubmit {
+  color: var(--primary-text);
+  font-family: var(--font-family);
+}
+
+.uploadInput,
+.uploadSequence {
+  margin-bottom: 10px;
+}
+
+.uploadSequence {
+  height: 80px;
+  resize: none;
+  font-size: 13px;
+}

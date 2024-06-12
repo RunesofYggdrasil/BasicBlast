@@ -6,7 +6,7 @@
   --primary-border: #000000;
   --secondary-border: #000000;
   --tertiary-border: #000000;
-  
+
   --primary-text: #000000;
   --secondary-text: #353535;
   --tertiary-text: #6b6b6b;
@@ -15,7 +15,7 @@
   --secondary-graphic: #5b00d3;
   --tertiary-graphic: #001d7e;
 
-  --font-family: 'Times New Roman', Times, serif;
+  --font-family: "Times New Roman", Times, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,6 +36,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+html {
+  overflow-y: scroll;
 }
 
 html,

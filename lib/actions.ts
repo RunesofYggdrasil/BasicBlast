@@ -36,3 +36,48 @@ export async function handleSearchSequence(formData: FormData) {
     redirect("?id=" + postQueryResponse.sequence.id);
   }
 }
+
+export async function handleUploadSequence(formData: FormData) {
+  const rawFormData = {
+    name: formData.get("name"),
+    species: formData.get("species"),
+    brief: formData.get("brief"),
+    description: formData.get("description"),
+    sequence: formData.get("sequence"),
+  };
+  if (
+    rawFormData.name &&
+    rawFormData.species &&
+    rawFormData.description &&
+    rawFormData.sequence
+  ) {
+    if (rawFormData.brief) {
+      const postSequenceBody = JSON.stringify({
+        name: rawFormData.name,
+        species: rawFormData.species,
+        brief: rawFormData.brief,
+        description: rawFormData.description,
+        sequence: rawFormData.sequence,
+        posted: true,
+      });
+      const postSequenceRequest = await fetchDB(
+        "/api/sequences",
+        "POST",
+        postSequenceBody
+      );
+    } else {
+      const postSequenceBody = JSON.stringify({
+        name: rawFormData.name,
+        species: rawFormData.species,
+        description: rawFormData.description,
+        sequence: rawFormData.sequence,
+        posted: true,
+      });
+      const postSequenceRequest = await fetchDB(
+        "/api/sequences",
+        "POST",
+        postSequenceBody
+      );
+    }
+  }
+}
